@@ -1,5 +1,7 @@
 import { coffees } from  "../data/data-coffees";
 import { get_badge } from '../data/data-choices';
+import { Link } from "react-router-dom";
+
 
 function CoffeeCard(props){  
   let coffeecard= props.props; 
@@ -11,7 +13,7 @@ function CoffeeCard(props){
        className="card-img-top thumbnail" alt="..."/>
       <div className="card-body">
         <span className="badge bg-primary rounded-pill">nuevo</span>
-        <h3 className="card-title">{coffeecard.name}</h3> 
+        <h3 className="card-title">{coffeecard.name}</h3>
         <p className="card-text text-secondary justify-content-between">{coffeecard.description}</p>
       </div>
       <ul className="list-group list-group-flush">
@@ -19,7 +21,7 @@ function CoffeeCard(props){
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Proceso: {coffeecard.process}</li>
         <li className="list-group-item text-light bg-transparent list-group-item-dark"> {coffeecard.weight}</li>
       </ul> 
-        <a href="#" className="btn btn-success">Comprar ${coffeecard.price}</a>
+        <Link to={`/coffees/${coffeecard.id}`} className="btn btn-success">Comprar ${coffeecard.price}</Link>
     </div>
   </div>
   </div>

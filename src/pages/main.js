@@ -2,17 +2,17 @@ import '../App.css';
 import { Fragment, useState } from 'react';
 import Choices from '../components/choices';
 import Content from '../components/content';
-import { AppContext } from '../context/app-context';
+import { AppContextProvider, AppContext } from '../context/app-context';
+import { useContext } from 'react';
 
 function App(props) {
-  const [choice, setChoice] = useState("Home")
-  const value = { choice, setChoice}; 
+  const ctx = useContext(AppContext)  
   return (
     <Fragment>
-      <AppContext.Provider value={value}>
+      <AppContextProvider>
       <Choices />
       <Content /> 
-      </AppContext.Provider>
+      </AppContextProvider>
     </Fragment>
   );
 }

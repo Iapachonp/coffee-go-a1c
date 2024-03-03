@@ -8,8 +8,10 @@ import Navbar from './components/navbar';
 import Login from './components/login';
 import Home from './components/home';
 import Coffees from './components/coffees';
+import Coffee from './components/coffee';
 import Choices from './components/choices';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AppContextProvider, AppContext } from './context/app-context';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/coffees",
         element: <Coffees />,
+      },
+      {
+        path: "/coffees/:id",
+        element: <Coffee />,
       },
     ], 
   },
@@ -37,10 +43,12 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AppContextProvider>
     <Navbar />
-    <div className= "App">
+    <div className= "App"> 
    <RouterProvider router={router} /> 
     </div>
+    </AppContextProvider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 export const coffees ={
   id0: {
+    id: 0,
     name: "Variedad colombia",
     badge: "Specialty",
     description:
@@ -12,6 +13,7 @@ export const coffees ={
     process: "Lavado"
   },
   id1: {
+    id: 1,
     name: "Variedad Tabi",
     badge: "Specialty",
     description:
@@ -23,7 +25,8 @@ export const coffees ={
     process: "Natural"
   },
   id2: {
-   name: "Variedad Geisha",
+    id: 2,
+    name: "Variedad Geisha",
     badge: "Specialty",
     description: "", 
     weight: "500 gr", 
@@ -32,6 +35,7 @@ export const coffees ={
     process: "Lavado"
   },
   id3: {
+    id: 3,
     name: "Variedad Pacamara",
     badge: "Specialty",
     description: "", 
@@ -41,6 +45,7 @@ export const coffees ={
     process: "Lavado"
   },
   id4: {
+    id: 4,
     name: "Variedad Pacamara",
     badge: "Specialty",
     description: "", 
@@ -50,6 +55,7 @@ export const coffees ={
     process: "Lavado"
   },
   id5: {
+    id: 5,
     name: "Variedad Bourbon Rojo",
     badge: "Specialty",
     description: "", 
