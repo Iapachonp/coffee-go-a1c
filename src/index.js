@@ -5,13 +5,16 @@ import App from './pages/main';
 import ErrorPage from './pages/ErrorPage';
 import reportWebVitals from './reportWebVitals';
 import Navbar from './components/navbar';
+import Footer from './components/footer';
 import Login from './components/login';
-import Home from './components/home';
+import Home from './pages/home';
 import Coffees from './components/coffees';
 import Coffee from './components/coffee';
 import Choices from './components/choices';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppContextProvider, AppContext } from './context/app-context';
+import WhatsAppContact from './components/WpContact';
+
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,11 @@ const router = createBrowserRouter([
       {
         path: "/coffees",
         element: <Coffees />,
+      },
+      
+      {
+        path: "/contacto",
+        element: <WhatsAppContact/>,
       },
       {
         path: "/coffees/:id",
@@ -43,11 +51,12 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppContextProvider>
+    <AppContextProvider> 
     <Navbar />
-    <div className= "App"> 
-   <RouterProvider router={router} /> 
+    <div className='container-fluid'>
+    <RouterProvider router={router} />
     </div>
+    <Footer />
     </AppContextProvider>
   </React.StrictMode>
 );

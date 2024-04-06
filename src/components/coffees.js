@@ -1,10 +1,12 @@
 import { coffees } from  "../data/data-coffees";
 import { get_badge } from '../data/data-choices';
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { scrollToTop } from "../other/ScrollToTop";
 
 
 function CoffeeCard(props){  
-  let coffeecard= props.props; 
+  let coffeecard= props.props;
   return (
   <div className="col">
   <div className="coffees container text-center h-100">
@@ -20,8 +22,8 @@ function CoffeeCard(props){
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Origen: {coffeecard.origin}</li>
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Proceso: {coffeecard.process}</li>
         <li className="list-group-item text-light bg-transparent list-group-item-dark"> {coffeecard.weight}</li>
-      </ul> 
-        <Link to={`/coffees/${coffeecard.id}`} className="btn btn-success">Comprar ${coffeecard.price}</Link>
+      </ul>
+      <Link onClick={scrollToTop} to={`/coffees/${coffeecard.id}`} className="btn btn-success"  >Comprar ${coffeecard.price}</Link>
     </div>
   </div>
   </div>
@@ -33,7 +35,7 @@ export default function Coffees () {
     <CoffeeCard props={coffees[key]} />  
   );
   return(
-    <div className="container">
+    <div className="container content">
       <h2 className="text-white bs-light bs-light-text-emphasis"> Cafes 
       <span className="badge bg-secondary">{get_badge("Coffees")}</span></h2>
       <div className="row row-cols-auto coffee-row">

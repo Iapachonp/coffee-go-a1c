@@ -1,7 +1,7 @@
 import '../App.css';
 import { Fragment, useState } from 'react';
-import Choices from '../components/choices';
 import Content from '../components/content';
+import Contact from '../components/contact';
 import { AppContextProvider, AppContext } from '../context/app-context';
 import { useContext } from 'react';
 
@@ -10,8 +10,7 @@ function App(props) {
   return (
     <Fragment>
       <AppContextProvider>
-      <Choices />
-      <Content /> 
+      <Content />
       </AppContextProvider>
     </Fragment>
   );

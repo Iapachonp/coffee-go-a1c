@@ -28,7 +28,7 @@ function Content(props) {
   const value = useContext(AppContext);
   const choice = window.location.pathname.substring(1);
   return (
-      <div className="content container">  
+      <div className="container">  
            <Outlet /> 
     </div>
   );

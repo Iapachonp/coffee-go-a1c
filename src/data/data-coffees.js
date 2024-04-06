@@ -2,7 +2,7 @@ export const coffees ={
   id0: {
     id: 0,
     name: "Variedad colombia",
-    badge: "Specialty",
+    badge: "Specialty", sca: "8.2",
     description:
     "Este café se asocia con perfiles de sabor limpios y suaves, destacando notas de panela, \
     frutos amarillos maduros y cítricos. Su cuerpo es sedoso y deja un agradable sabor residual \
@@ -15,7 +15,7 @@ export const coffees ={
   id1: {
     id: 1,
     name: "Variedad Tabi",
-    badge: "Specialty",
+    badge: "Specialty", sca: "8.5",
     description:
     "Este café se asocia con perfiles de sabor limpios y suaves, destacando notas de panela, \
     a nuez.",
@@ -27,7 +27,7 @@ export const coffees ={
   id2: {
     id: 2,
     name: "Variedad Geisha",
-    badge: "Specialty",
+    badge: "Specialty", sca: "8.5",
     description: "", 
     weight: "500 gr", 
     price: 50000,
@@ -37,7 +37,7 @@ export const coffees ={
   id3: {
     id: 3,
     name: "Variedad Pacamara",
-    badge: "Specialty",
+    badge: "Specialty", sca: "8.6",
     description: "", 
     weight: "500 gr", 
     price: 55000,
@@ -47,7 +47,7 @@ export const coffees ={
   id4: {
     id: 4,
     name: "Variedad Pacamara",
-    badge: "Specialty",
+    badge: "Specialty", sca: "8.5",
     description: "", 
     weight: "500 gr", 
     price: 55000,
@@ -57,7 +57,7 @@ export const coffees ={
   id5: {
     id: 5,
     name: "Variedad Bourbon Rojo",
-    badge: "Specialty",
+    badge: "Specialty", sca: "8.5",
     description: "", 
     weight: "500 gr", 
     price: 50000,

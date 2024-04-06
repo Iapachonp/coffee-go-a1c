@@ -22,7 +22,7 @@ const Login = () => {
   }
 
     return( 
-    <div className="container">
+    <div className="content container">
     <Alert message={ctx.alertMessage} className={ctx.alertClassname} /> 
     <div className="row">
     <div className="col-md-6 offset-md-3">
