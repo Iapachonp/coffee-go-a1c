@@ -51,8 +51,8 @@ export default function Coffee (){
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   return(
    <div className="coffee container content"> 
-    <h2 className="text-white bs-light bs-light-text-emphasis" >  {coffees["id"+id].name + " "} 
-    <span className="badge bg-primary rounded-pill">{coffees["id"+id].sca + " sca"}</span> </h2> 
+    <h2 className="text-white bs-light bs-light-text-emphasis" >  {coffees[id].name + " "} 
+    <span className="badge bg-primary rounded-pill">{coffees[id].sca + " sca"}</span> </h2> 
       <div className="container">
         <div className="row justify-content-start">
           <div className="col-3">
@@ -60,21 +60,21 @@ export default function Coffee (){
           </div>
           <div className="col-5"> 
             <h4 className="text-white"> Description </h4>
-            <p className="text-white"> {coffees["id"+id].description}  </p>
+            <p className="text-white"> {coffees[id].description}  </p>
           <div className="col-6"> 
           <div className="card" >
             <ul className="list-group list-group-flush">
-              <li className="list-group-item"> <b>Origen: </b> {coffees["id"+id].origin}</li>
-              <li className="list-group-item list-group-item-secondary"> <b>Proceso: </b> {coffees["id"+id].process}</li>
+              <li className="list-group-item"> <b>Origen: </b> {coffees[id].origin}</li>
+              <li className="list-group-item list-group-item-secondary"> <b>Proceso: </b> {coffees[id].proccess}</li>
               <li className="list-group-item">
                 <label for="inputState"> <b> Presentacion: </b> </label>
                   <select id="inputState" class="form-control bg-secondary-subtle">
-                  <option selected>{coffees["id"+id].weight}</option>
+                  <option selected>{coffees[id].weight}</option>
                   <option>250 gr</option>
                   <option>2.5 kg</option>
                   </select>
               </li>
-              <li className="list-group-item list-group-item-secondary"><b>Precio:</b> ${coffees["id"+id].price} </li>
+              <li className="list-group-item list-group-item-secondary"><b>Precio:</b> ${coffees[id].price} </li>
             </ul>
           </div> 
           </div>
