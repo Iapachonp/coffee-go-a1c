@@ -11,8 +11,7 @@ function CoffeeCard(props){
   <div className="col">
   <div className="coffees container text-center h-100">
     <div className="card h-100 text-bg-dark" style={{width: "18rem"}}>
-      <img src="https://antesuncafe.com/static/media/project-img1.42b4985dc6e22b4b5394.png" 
-       className="card-img-top thumbnail" alt="..."/>
+      <img src={coffeecard.image} className="card-img-top thumbnail" alt="..."/>
       <div className="card-body">
         <span className="badge bg-primary rounded-pill">nuevo</span>
         <h3 className="card-title">{coffeecard.name}</h3>

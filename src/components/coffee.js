@@ -45,9 +45,25 @@ class Barchart extends Component {
 }
 
 
+function getCoffeeId(coffees, preid){
+
+  for (let i = 0; i < coffees.length; i++) {
+    console.log(coffees[i]["id"])
+    if (coffees[i]["id"] === parseInt(preid)) {
+      console.log(coffees[i]["id"])
+      return i
+      }
+    };
+  return 0
+}
+
+
 export default function Coffee (){
   const location = useLocation().pathname
-  let id = location.substring(9)
+  let preid = location.substring(9) 
+  console.log("hey preid " + preid)
+  let id = getCoffeeId(coffees, preid)
+  console.log("hey id " + id)
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   return(
    <div className="coffee container content"> 
@@ -56,7 +72,7 @@ export default function Coffee (){
       <div className="container">
         <div className="row justify-content-start">
           <div className="col-3">
-            <img src="https://antesuncafe.com/static/media/project-img1.42b4985dc6e22b4b5394.png" className="img-fluid rounded" alt="..."/> 
+            <img src={coffees[id].image} className="img-fluid rounded" alt="..."/> 
           </div>
           <div className="col-5"> 
             <h4 className="text-white"> Description </h4>
@@ -67,11 +83,11 @@ export default function Coffee (){
               <li className="list-group-item"> <b>Origen: </b> {coffees[id].origin}</li>
               <li className="list-group-item list-group-item-secondary"> <b>Proceso: </b> {coffees[id].proccess}</li>
               <li className="list-group-item">
-                <label for="inputState"> <b> Presentacion: </b> </label>
-                  <select id="inputState" class="form-control bg-secondary-subtle">
-                  <option selected>{coffees[id].weight}</option>
-                  <option>250 gr</option>
-                  <option>2.5 kg</option>
+                <label htmlFor="inputState"> <b> Presentacion: </b> </label>
+                  <select id="inputState" className="form-control bg-secondary-subtle">
+                  <option  defaultValue={coffees[id].weight}>{coffees[id].weight} gr </option>
+                  <option>{coffees[id].weight *2} gr</option>
+                  <option>{coffees[id].weight * 4} kg</option>
                   </select>
               </li>
               <li className="list-group-item list-group-item-secondary"><b>Precio:</b> ${coffees[id].price} </li>
@@ -82,7 +98,7 @@ export default function Coffee (){
             isOpen={isPopoverOpen}
             positions={[ 'bottom']} // preferred positions by priority
             content={
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div className="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Holy coffee lover!</strong> Estamos creando y terminando nuestra web app te invitamos a      
                 <a href="/contacto" data-rr-ui-event-key="/shop" className="alert-link"> realizar tu pedido aqui!!!</a>
                 </div>
