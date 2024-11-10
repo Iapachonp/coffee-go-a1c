@@ -2,7 +2,7 @@ import '../App.css';
 import { useContext, useState } from 'react';
 import { AppContext } from '../context/app-context';
 import Home from './home';
-import Coffees from './coffees';
+import Coffees from '../pages/coffees';
 import { Outlet, useLocation } from 'react-router-dom';
 
 function ContentDiv(choice){

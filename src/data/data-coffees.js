@@ -6,7 +6,17 @@ const requestOptions = {
   headers: headers
 }
 
-export let coffees = await fetch(`/listCoffees`, requestOptions)
+export let coffees = await fetch(`/coffees`, requestOptions)
+  .then((response)=> response.json())
+  .then( (data) => {
+    return data;
+  } )
+  .catch(err=> {
+    console.log(err)
+  });
+
+
+export let varietals = await fetch(`/varietals`, requestOptions)
   .then((response)=> response.json())
   .then( (data) => {
     return data;

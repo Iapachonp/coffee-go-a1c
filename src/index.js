@@ -8,9 +8,9 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Login from './components/login';
 import Home from './pages/home';
-import Coffees from './components/coffees';
-import Coffee from './components/coffee';
-import Choices from './components/choices';
+import Coffees from './pages/coffees';
+import Coffee from './pages/coffee';
+import AdminPage from './pages/admin';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppContextProvider, AppContext } from './context/app-context';
 import WhatsAppContact from './components/WpContact';
@@ -27,7 +27,10 @@ const router = createBrowserRouter([
         path: "/coffees",
         element: <Coffees />,
       },
-      
+      {
+        path: "/admin",
+        element: <AdminPage />,
+      }, 
       {
         path: "/contacto",
         element: <WhatsAppContact/>,
