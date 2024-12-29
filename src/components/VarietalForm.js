@@ -1,26 +1,59 @@
 import React, { useState } from 'react';
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Modal, Button, Form, InputGroup } from "react-bootstrap";
+import postVarietal from "../utils/psqlHandlers" 
 
-const AddVarietalForm = (props) => {
+function PopUp(props){
+  return(
+      <Modal 
+        {...props}
+        centered > 
+        <Modal.Header closeButton>
+          <Modal.Title className='text-dark'> Ahoy you coffee cowboy!!! </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className='text-secondary'>  {props.msg}. Confirm to refresh the page.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={props.onHide}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
+  );
+}
+
+
+function AddVarietalForm (props) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [beanSize, setBeanSize] = useState("");
   const [stature, setStature] = useState("");
   const [qualityPotential, setQualityPotential] = useState("");
   const [optimalAltitude, setOptimalAltitude] = useState("");
-
+  const [varietalCreated, setVarietalCreated] = useState("not set");
+  const [modalShow, setModalShow] = useState(false);
+  
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     const newVarietal = {
-      name,
-      description,
-      beanSize,
-      stature,
-      qualityPotential,
-      optimalAltitude,
+        "Name": name,
+        "Description": description,
+        "BeanSize": beanSize,
+        "Stature": stature,
+        "QualityPotential": qualityPotential,
+        "OptimalAltitude": optimalAltitude
     };
-    props.onAddVarietal(newVarietal);
-    // Reset form fields
+    
+    let response = postVarietal(newVarietal);
+    
+    setVarietalCreated(name)
+    response.then((res) => {
+      console.log(res);
+      if (res.ok) {
+        console.log("we got till here");
+        setModalShow(true);}
+      else {setModalShow(false)};
+    });
+
     setName("");
     setDescription("");
     setBeanSize("");
@@ -30,6 +63,7 @@ const AddVarietalForm = (props) => {
   };
 
   return (
+    <div>
     <Form onSubmit={handleSubmit}>
       <InputGroup className="vertical mb-2">
         <InputGroup.Text id="name">Name:</InputGroup.Text>
@@ -114,6 +148,8 @@ const AddVarietalForm = (props) => {
         Add Varietal
       </Button>
     </Form>
+    <PopUp show={modalShow} msg={`Varietal ${varietalCreated} was successfully created`} onHide={() => window.location.reload()}/>
+    </div>
   );
 };
 
