@@ -20,10 +20,6 @@ const AddCoffeeForm = (props) => {
   const [priceId, setPriceId] = useState("");
   const [image, setImage] = useState("");
 
-  let varietalsDropDown = varietals.map((varietal) =>     
-    <option value={varietal.varietalId}>{varietal.name}</option>
-  );
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const newCoffee = {
