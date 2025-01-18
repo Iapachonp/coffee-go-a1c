@@ -24,3 +24,12 @@ export let varietals = await fetch(`/varietals`, requestOptions)
   .catch(err=> {
     console.log(err)
   });
+
+export let farmers = await fetch(`/farmers`, requestOptions)
+  .then((response)=> response.json())
+  .then( (data) => {
+    return data;
+  } )
+  .catch(err=> {
+    console.log(err)
+  });
