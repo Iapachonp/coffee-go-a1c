@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, InputGroup } from "react-bootstrap";
+import {farmers, varietals } from  "../data/data-coffees";
+import Dropdown from './Dropdown';
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 const AddCoffeeForm = (props) => {
   const [name, setName] = useState("");
@@ -15,6 +19,10 @@ const AddCoffeeForm = (props) => {
   const [sweetness, setSweetness] = useState("");
   const [priceId, setPriceId] = useState("");
   const [image, setImage] = useState("");
+
+  let varietalsDropDown = varietals.map((varietal) =>     
+    <option value={varietal.varietalId}>{varietal.name}</option>
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -67,6 +75,12 @@ const AddCoffeeForm = (props) => {
           required
         />
       </InputGroup>
+      <FloatingLabel controlId="floatingSelect" label="Varietal"className="vertical mb-2" >
+      <Form.Select size="md" value={varietalId} name="varietal" onChange={(event) => setVarietalId(event.target.value)} >
+        <option disabled value="">Select a Varietal...</option>
+        <Dropdown data={varietals} keyId={"varietalId"} keyName={"name"}/>
+      </Form.Select> 
+      </FloatingLabel>
       <InputGroup className="vertical mb-2">
         <InputGroup.Text id="varietalId">Varietal ID:</InputGroup.Text>
         <input
@@ -80,6 +94,12 @@ const AddCoffeeForm = (props) => {
           required
         />
       </InputGroup>
+      <FloatingLabel controlId="floatingSelect" label="farmer"className="vertical mb-2" >
+      <Form.Select size="md" value={farmerId} name="farmer" onChange={(event) => setFarmerId(event.target.value)} >
+        <option disabled value="">Select a farmer...</option>
+        <Dropdown data={farmers} keyId={"farmerid"} keyName={"name"}/>
+      </Form.Select> 
+      </FloatingLabel>
       <InputGroup className="vertical mb-2">
         <InputGroup.Text id="farmerId">Farmer ID:</InputGroup.Text>
         <input
