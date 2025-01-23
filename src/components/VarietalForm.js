@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, InputGroup } from "react-bootstrap";
-import postVarietal from "../utils/psqlHandlers"
+import {postVarietal} from "../utils/psqlHandlers"
 import PopUp from './PopUp';
 
 function AddVarietalForm (props) {
