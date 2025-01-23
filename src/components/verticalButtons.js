@@ -3,9 +3,11 @@ import '../App.css';
 import AddVarietalForm  from './VarietalForm';
 import AddFarmerForm  from './FarmerForm';
 import AddCoffeeForm from './CoffeeForm';
+import AddOriginForm from './OriginForm';
 import CoffeeList from './CoffeeList';
 import VarietalList from './VarietalsList';
 import FarmerList from './FarmersList';
+import OriginList from './OriginsList';
 import ErrorPage from '../pages/ErrorPage';
 
 import { useContext, Fragment } from 'react';
@@ -37,6 +39,8 @@ function VerticalButtonFormSelector (props) {
       "New Varietal": <AddVarietalForm/>,
       "List Farmers" : <FarmerList/>,
       "New Farmer": <AddFarmerForm/>,
+      "List Origins" : <OriginList/>,
+      "New Origin": <AddOriginForm/>,
     }
     console.log(myComponents[form])
     if (!myComponents[form]) { return (<UndefiniedComponent />) } 

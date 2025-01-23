@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, InputGroup } from "react-bootstrap";
-import {farmers, varietals } from  "../data/data-coffees";
+import {farmers, varietals, origins } from  "../data/data-coffees";
 import Dropdown from './Dropdown';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -109,6 +109,12 @@ const AddCoffeeForm = (props) => {
           required
         />
       </InputGroup>
+      <FloatingLabel controlId="floatingSelect" label="origin"className="vertical mb-2" >
+      <Form.Select size="md" value={originId} name="origin" onChange={(event) => setOriginId(event.target.value)} >
+        <option disabled value="">Select a origin...</option>
+        <Dropdown data={origins} keyId={"originid"} keyName={"country"}/>
+      </Form.Select> 
+      </FloatingLabel>
       <InputGroup className="vertical mb-2">
         <InputGroup.Text id="originId">Origin ID:</InputGroup.Text>
         <input

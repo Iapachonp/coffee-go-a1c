@@ -33,3 +33,12 @@ export let farmers = await fetch(`/farmers`, requestOptions)
   .catch(err=> {
     console.log(err)
   });
+
+export let origins = await fetch(`/origins`, requestOptions)
+  .then((response)=> response.json())
+  .then( (data) => {
+    return data;
+  } )
+  .catch(err=> {
+    console.log(err)
+  });
