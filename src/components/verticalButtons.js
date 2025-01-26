@@ -4,10 +4,12 @@ import AddVarietalForm  from './VarietalForm';
 import AddFarmerForm  from './FarmerForm';
 import AddCoffeeForm from './CoffeeForm';
 import AddOriginForm from './OriginForm';
+import AddProcessForm from './ProcessForm';
 import CoffeeList from './CoffeeList';
 import VarietalList from './VarietalsList';
 import FarmerList from './FarmersList';
 import OriginList from './OriginsList';
+import ProcessList from './ProcessList';
 import ErrorPage from '../pages/ErrorPage';
 
 import { useContext, Fragment } from 'react';
@@ -41,6 +43,8 @@ function VerticalButtonFormSelector (props) {
       "New Farmer": <AddFarmerForm/>,
       "List Origins" : <OriginList/>,
       "New Origin": <AddOriginForm/>,
+      "List Processes" : <ProcessList/>,
+      "New Process": <AddProcessForm/>,
     }
     console.log(myComponents[form])
     if (!myComponents[form]) { return (<UndefiniedComponent />) } 

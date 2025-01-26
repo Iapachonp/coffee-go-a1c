@@ -5,7 +5,7 @@ import VerticalButtonFormSelector from "../components/verticalButtons";
 
 export default function AdminPage() {
     
-    const CHOICES = [ {name: 'List Coffees'}, {name: 'New Coffee'}, {name: 'List Varietals' }, {name: 'New Varietal'}, {name: 'List Farmers'}, {name: 'New Farmer'}, {name: 'List Origins' }, {name: 'New Origin'} ];
+    const CHOICES = [ {name: 'List Coffees'}, {name: 'New Coffee'}, {name: 'List Varietals' }, {name: 'New Varietal'}, {name: 'List Farmers'}, {name: 'New Farmer'}, {name: 'List Origins' }, {name: 'New Origin'}, {name: 'List Processes' }, {name: 'New Process'} ];
     return (
         <div className="content container">
             <div className="row">

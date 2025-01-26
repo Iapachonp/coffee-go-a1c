@@ -42,3 +42,12 @@ export let origins = await fetch(`/origins`, requestOptions)
   .catch(err=> {
     console.log(err)
   });
+
+export let processes = await fetch(`/processes`, requestOptions)
+  .then((response)=> response.json())
+  .then( (data) => {
+    return data;
+  } )
+  .catch(err=> {
+    console.log(err)
+  });

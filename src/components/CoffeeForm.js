@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, InputGroup } from "react-bootstrap";
-import {farmers, varietals, origins } from  "../data/data-coffees";
+import {farmers, varietals, origins, processes } from  "../data/data-coffees";
 import Dropdown from './Dropdown';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -16,7 +16,7 @@ const AddCoffeeForm = (props) => {
   const [farmerId, setFarmerId] = useState("");
   const [originId, setOriginId] = useState(5);
   const [fullOrigin, setFullOrigin] = useState("Choose an origin");
-  const [proccessId, setProccessId] = useState("");
+  const [processId, setProcessId] = useState("");
   const [sca, setSca] = useState("");
   const [acidity, setAcidity] = useState("");
   const [body, setBody] = useState("");
@@ -38,7 +38,7 @@ const AddCoffeeForm = (props) => {
       varietalId,
       farmerId,
       originId,
-      proccessId,
+      processId,
       sca,
       acidity,
       body,
@@ -54,7 +54,7 @@ const AddCoffeeForm = (props) => {
     setVarietalId("");
     setFarmerId("");
     setOriginId("");
-    setProccessId("");
+    setProcessId("");
     setSca("");
     setAcidity("");
     setBody("");
@@ -88,70 +88,24 @@ const AddCoffeeForm = (props) => {
         <Dropdown data={varietals} keyId={"varietalId"} keyName={"name"}/>
       </Form.Select> 
       </FloatingLabel>
-      <InputGroup className="vertical mb-2">
-        <InputGroup.Text id="varietalId">Varietal ID:</InputGroup.Text>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Varietal ID"
-          aria-label="Varietal ID"
-          aria-describedby="varietalId"
-          value={varietalId}
-          onChange={(event) => setVarietalId(event.target.value)}
-          required
-        />
-      </InputGroup>
       <FloatingLabel controlId="floatingSelect" label="farmer"className="vertical mb-2" >
       <Form.Select size="md" value={farmerId} name="farmer" onChange={(event) => setFarmerId(event.target.value)} >
         <option disabled value="">Select a farmer...</option>
         <Dropdown data={farmers} keyId={"farmerid"} keyName={"name"}/>
       </Form.Select> 
       </FloatingLabel>
-      <InputGroup className="vertical mb-2">
-        <InputGroup.Text id="farmerId">Farmer ID:</InputGroup.Text>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Farmer ID"
-          aria-label="Farmer ID"
-          aria-describedby="farmerId"
-          value={farmerId}
-          onChange={(event) => setFarmerId(event.target.value)}
-          required
-        />
-      </InputGroup>
       <FloatingLabel controlId="floatingSelect" label={"Origin: " + fullOrigin } className="vertical mb-2" >
       <Form.Select size="md" value={originId} name="origin {originId}" onChange={(event) => handleOrigin(event.target.value) } >
         <option disabled value="">Select a origin...</option>
         <Dropdown data={origins} keyId={"originid"} keyName={"citytown"}/>
       </Form.Select> 
       </FloatingLabel>
-      <InputGroup className="vertical mb-2">
-        <InputGroup.Text id="originId">Origin ID:</InputGroup.Text>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Origin ID"
-          aria-label="Origin ID"
-          aria-describedby="originId"
-          value={originId}
-          onChange={(event) => setOriginId(event.target.value)}
-          required
-        />
-      </InputGroup>
-      <InputGroup className="vertical mb-2">
-        <InputGroup.Text id="proccessId">Process ID:</InputGroup.Text>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Process ID"
-          aria-label="Process ID"
-          aria-describedby="proccessId"
-          value={proccessId}
-          onChange={(event) => setProccessId(event.target.value)}
-          required
-        />
-      </InputGroup>
+      <FloatingLabel controlId="floatingSelect" label="Process"className="vertical mb-2" >
+      <Form.Select size="md" value={processId} name="process" onChange={(event) => setProcessId(event.target.value)} >
+        <option disabled value="">Select a Process...</option>
+        <Dropdown data={processes} keyId={"processid"} keyName={"name"}/>
+      </Form.Select> 
+      </FloatingLabel>
       <InputGroup className="vertical mb-2">
         <InputGroup.Text id="sca">SCA:</InputGroup.Text>
         <input
@@ -271,3 +225,19 @@ const AddCoffeeForm = (props) => {
 
 export default AddCoffeeForm;
 
+      // This is a place holder to check the value we are getting from the dropdown!!!
+      //
+      // <InputGroup className="vertical mb-2">
+      //   <InputGroup.Text id="varietalId">Varietal ID:</InputGroup.Text>
+      //   <input
+      //     type="number"
+      //     className="form-control"
+      //     placeholder="Varietal ID"
+      //     aria-label="Varietal ID"
+      //     aria-describedby="varietalId"
+      //     value={varietalId}
+      //     onChange={(event) => setVarietalId(event.target.value)}
+      //     required
+      //   />
+      // </InputGroup>
+      // This is a place holder to check the value we are getting from the dropdown!!!

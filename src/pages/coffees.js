@@ -19,7 +19,7 @@ function CoffeeCard(props){
       </div>
       <ul className="list-group list-group-flush">
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Origen: {coffeecard.origin}</li>
-        <li className="list-group-item text-light bg-transparent list-group-item-dark">Proceso: {coffeecard.proccess}</li>
+        <li className="list-group-item text-light bg-transparent list-group-item-dark">Proceso: {coffeecard.process}</li>
         <li className="list-group-item text-light bg-transparent list-group-item-dark"> {coffeecard.weight}</li>
       </ul>
       <Link onClick={scrollToTop} to={`/coffees/${coffeecard.id}`} className="btn btn-success"  >Comprar ${coffeecard.price}</Link>

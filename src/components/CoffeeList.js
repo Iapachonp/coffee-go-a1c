@@ -22,7 +22,7 @@ const CoffeeList = () => {
                   {coffee.origin.trim()}
                 </Card.Subtitle>
                 <Card.Text className="flex-grow-1">
-                  <strong>Process:</strong> {coffee.proccess.trim()}<br />
+                  <strong>Process:</strong> {coffee.process.trim()}<br />
                   <strong>Description:</strong> {coffee.description.trim()}<br />
                   <strong>SCA:</strong> {coffee.sca}<br />
                   <strong>Weight:</strong> {coffee.weight}g<br />

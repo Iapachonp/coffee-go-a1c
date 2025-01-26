@@ -81,7 +81,7 @@ export default function Coffee (){
           <div className="card" >
             <ul className="list-group list-group-flush">
               <li className="list-group-item"> <b>Origen: </b> {coffees[id].origin}</li>
-              <li className="list-group-item list-group-item-secondary"> <b>Proceso: </b> {coffees[id].proccess}</li>
+              <li className="list-group-item list-group-item-secondary"> <b>Proceso: </b> {coffees[id].process}</li>
               <li className="list-group-item">
                 <label htmlFor="inputState"> <b> Presentacion: </b> </label>
                   <select id="inputState" className="form-control bg-secondary-subtle">
