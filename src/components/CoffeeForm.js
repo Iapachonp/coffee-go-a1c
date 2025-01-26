@@ -5,11 +5,17 @@ import Dropdown from './Dropdown';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
+function getObjectFromArray(array, key, value) {
+  const obj = array.find(item => item[key] == value);
+  return obj ? obj : array[0];
+}
+
 const AddCoffeeForm = (props) => {
   const [name, setName] = useState("");
   const [varietalId, setVarietalId] = useState("");
   const [farmerId, setFarmerId] = useState("");
-  const [originId, setOriginId] = useState("");
+  const [originId, setOriginId] = useState(5);
+  const [fullOrigin, setFullOrigin] = useState("Choose an origin");
   const [proccessId, setProccessId] = useState("");
   const [sca, setSca] = useState("");
   const [acidity, setAcidity] = useState("");
@@ -19,6 +25,11 @@ const AddCoffeeForm = (props) => {
   const [sweetness, setSweetness] = useState("");
   const [priceId, setPriceId] = useState("");
   const [image, setImage] = useState("");
+
+  async function handleOrigin(state) {
+    await setOriginId(state);
+    await setFullOrigin( getObjectFromArray(origins, "originid", state)["country"] + " " + getObjectFromArray(origins, "originid", state)["state"]);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -109,10 +120,10 @@ const AddCoffeeForm = (props) => {
           required
         />
       </InputGroup>
-      <FloatingLabel controlId="floatingSelect" label="origin"className="vertical mb-2" >
-      <Form.Select size="md" value={originId} name="origin" onChange={(event) => setOriginId(event.target.value)} >
+      <FloatingLabel controlId="floatingSelect" label={"Origin: " + fullOrigin } className="vertical mb-2" >
+      <Form.Select size="md" value={originId} name="origin {originId}" onChange={(event) => handleOrigin(event.target.value) } >
         <option disabled value="">Select a origin...</option>
-        <Dropdown data={origins} keyId={"originid"} keyName={"country"}/>
+        <Dropdown data={origins} keyId={"originid"} keyName={"citytown"}/>
       </Form.Select> 
       </FloatingLabel>
       <InputGroup className="vertical mb-2">
