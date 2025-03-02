@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { processes } from '../data/data-coffees'; // Ensure you have the correct path to your data
+import delIcon from '../assets/img/img/del-icon.png';
+import editIcon from '../assets/img/img/edit-icon.png';
 
 const ProcessList = () => {
   return (
@@ -17,6 +19,12 @@ const ProcessList = () => {
                   <strong>description:</strong> {process.description.trim()}<br />
                   <strong>Time Duration:</strong> {process.timeduration.trim()}<br />
                 </Card.Text>
+              <div>
+                <a href="#"> <img src={delIcon} alt="" style={{ width:"32px", height:"32px" }} /> </a>      
+                <div style={{ width:"70px", height:"auto", display:"inline-block"}} > 
+                </div>
+                <a href="#" style={{}}> <img src={editIcon} alt="" style={{ width:"32px", height:"32px"}} /> </a>
+              </div>
               </Card.Body>
             </Card>
           </Col>

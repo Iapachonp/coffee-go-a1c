@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, InputGroup } from "react-bootstrap";
 import {farmers, varietals, origins, processes } from  "../data/data-coffees";
+import {postCoffee} from "../utils/psqlHandlers"
+import PopUp from './PopUp';
 import Dropdown from './Dropdown';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -12,19 +14,22 @@ function getObjectFromArray(array, key, value) {
 
 const AddCoffeeForm = (props) => {
   const [name, setName] = useState("");
-  const [varietalId, setVarietalId] = useState("");
-  const [farmerId, setFarmerId] = useState("");
+  const [description, setDescription] = useState("");
+  const [varietalId, setVarietalId] = useState(0);
+  const [farmerId, setFarmerId] = useState(1);
   const [originId, setOriginId] = useState(5);
   const [fullOrigin, setFullOrigin] = useState("Choose an origin");
-  const [processId, setProcessId] = useState("");
-  const [sca, setSca] = useState("");
+  const [processId, setProcessId] = useState(1);
+  const [sca, setSca] = useState(0.00);
   const [acidity, setAcidity] = useState("");
   const [body, setBody] = useState("");
   const [balance, setBalance] = useState("");
   const [clarity, setClarity] = useState("");
   const [sweetness, setSweetness] = useState("");
-  const [priceId, setPriceId] = useState("");
+  const [priceId, setPriceId] = useState(1);
   const [image, setImage] = useState("");
+  const [coffeeCreated, setCoffeeCreated] = useState("not set");
+  const [modalShow, setModalShow] = useState(false);
 
   async function handleOrigin(state) {
     await setOriginId(state);
@@ -33,24 +38,39 @@ const AddCoffeeForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(sca)
     const newCoffee = {
-      name,
-      varietalId,
-      farmerId,
-      originId,
-      processId,
-      sca,
-      acidity,
-      body,
-      balance,
-      clarity,
-      sweetness,
-      priceId,
-      image,
-    };
-    props.onAddCoffee(newCoffee);
+    "name" : name , 
+    "description": description, 
+    "varietalId": varietalId, 
+    "farmerId": farmerId, 
+    "originId": originId,
+    "processId": processId,
+    "sca": sca,
+    "acidity": acidity,
+    "body": body,
+    "balance": balance,
+    "clarity": clarity,
+    "sweetness": sweetness,
+    "priceId": priceId,
+    "image": image
+
+    }
+    
+    let response = postCoffee(newCoffee);
+    
+    setCoffeeCreated(name)
+    response.then((res) => {
+      console.log(res);
+      if (res.ok) {
+        console.log("we got till here");
+        setModalShow(true);}
+      else {setModalShow(false)};
+    });
+
     // Reset form fields
     setName("");
+    setDescription("");
     setVarietalId("");
     setFarmerId("");
     setOriginId("");
@@ -66,6 +86,7 @@ const AddCoffeeForm = (props) => {
   };
 
   return (
+    <div>
     <Form onSubmit={handleSubmit}>
       <h4 className="mb-3">New Coffee</h4>
       <InputGroup className="vertical mb-2">
@@ -80,6 +101,19 @@ const AddCoffeeForm = (props) => {
           value={name}
           onChange={(event) => setName(event.target.value)}
           required
+        />
+      </InputGroup>
+      <InputGroup className="vertical mb-2">
+        <InputGroup.Text id="description">Description:</InputGroup.Text>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Description"
+          aria-label="Description"
+          aria-describedby="description"
+          maxLength="255"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         />
       </InputGroup>
       <FloatingLabel controlId="floatingSelect" label="Varietal"className="vertical mb-2" >
@@ -217,27 +251,13 @@ const AddCoffeeForm = (props) => {
         />
       </InputGroup>
       <Button variant="primary" type="submit">
-        Add Coffee
+        Add Varietal
       </Button>
     </Form>
+    <PopUp show={modalShow} msg={`coffee ${coffeeCreated} was successfully created`} onHide={() => window.location.reload()}/>
+    </div>
+
   );
 };
 
 export default AddCoffeeForm;
-
-      // This is a place holder to check the value we are getting from the dropdown!!!
-      //
-      // <InputGroup className="vertical mb-2">
-      //   <InputGroup.Text id="varietalId">Varietal ID:</InputGroup.Text>
-      //   <input
-      //     type="number"
-      //     className="form-control"
-      //     placeholder="Varietal ID"
-      //     aria-label="Varietal ID"
-      //     aria-describedby="varietalId"
-      //     value={varietalId}
-      //     onChange={(event) => setVarietalId(event.target.value)}
-      //     required
-      //   />
-      // </InputGroup>
-      // This is a place holder to check the value we are getting from the dropdown!!!
