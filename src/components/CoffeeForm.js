@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, InputGroup } from "react-bootstrap";
 import {farmers, varietals, origins, processes } from  "../data/data-coffees";
-import {postCoffee} from "../utils/psqlHandlers"
+import {postCoffee} from "../utils/psqlHandlers";
 import PopUp from './PopUp';
 import Dropdown from './Dropdown';
 import Form from 'react-bootstrap/Form';
@@ -15,11 +15,11 @@ function getObjectFromArray(array, key, value) {
 const AddCoffeeForm = (props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [varietalId, setVarietalId] = useState(0);
-  const [farmerId, setFarmerId] = useState(1);
-  const [originId, setOriginId] = useState(5);
+  const [varietalId, setVarietalId] = useState("1");
+  const [farmerId, setFarmerId] = useState("1");
+  const [originId, setOriginId] = useState("5");
   const [fullOrigin, setFullOrigin] = useState("Choose an origin");
-  const [processId, setProcessId] = useState(1);
+  const [processId, setProcessId] = useState("1");
   const [sca, setSca] = useState(0.00);
   const [acidity, setAcidity] = useState("");
   const [body, setBody] = useState("");
@@ -63,7 +63,6 @@ const AddCoffeeForm = (props) => {
     response.then((res) => {
       console.log(res);
       if (res.ok) {
-        console.log("we got till here");
         setModalShow(true);}
       else {setModalShow(false)};
     });

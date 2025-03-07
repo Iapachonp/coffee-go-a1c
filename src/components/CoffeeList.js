@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { coffees } from '../data/data-coffees'; // Ensure you have the correct path to your data
 import delIcon from '../assets/img/img/del-icon.png';
 import editIcon from '../assets/img/img/edit-icon.png';
+import PopUp from './PopUp';
+import {deleteCoffee} from "../utils/psqlHandlers";
 
 const CoffeeList = () => {
+  const [coffeeId, setCoffeeId] = useState(null);
+  const [coffeeName, setCoffeeName] = useState(null);
+  const [coffeeCreated, setCoffeeCreated] = useState("not set");
+  const [modalShow, setModalShow] = useState(false);
+  const [modalDelShow, setModalDelShow] = useState(false);
+
+  
+  const deleteC = () => {
+    let response = deleteCoffee(coffeeId);
+    // setCoffeeCreated(name)
+    response.then((res) => {
+      console.log(res);
+      if (res.ok) {
+        setModalDelShow(true);}
+      else {setModalDelShow(false)};
+    }); 
+  }
+
+
+  const handleDelete = (coffee) => {
+    // event.preventDefault();
+    console.log(coffee)
+    setCoffeeName(coffee.name) 
+    setCoffeeId(coffee.id)
+    if (modalShow) {
+      setModalShow(false);}
+    else {
+      setModalShow(true);
+    }
+  }
+
+
+  const handleToggle = () => {
+    // event.preventDefault();
+    if (modalShow) {
+      setModalShow(false);}
+    else {
+      setModalShow(true);
+    }
+  }
+
+
+
   return (
     <Container className="mt-4">
       <h4 className="mb-3">Coffee List</h4>
@@ -31,7 +76,7 @@ const CoffeeList = () => {
                   <strong>Price:</strong> ${coffee.price}
                 </Card.Text>
               <div>
-                <a href="#"> <img src={delIcon} alt="" style={{ width:"32px", height:"32px" }} /> </a>      
+                <button onClick={() => handleDelete(coffee)}> <img src={delIcon} alt="" style={{ width:"32px", height:"32px" }} /> </button>      
                 <div style={{ width:"70px", height:"auto", display:"inline-block"}} > 
                 </div>
                 <a href="#" style={{}}> <img src={editIcon} alt="" style={{ width:"32px", height:"32px"}} /> </a>
@@ -41,6 +86,8 @@ const CoffeeList = () => {
           </Col>
         ))}
       </Row>
+      <PopUp show={modalShow} msg={`Do you want to delete Coffeeid ${coffeeId}: ${coffeeName}? `} onClose={() => handleToggle() } onHide={() => deleteC()}/>
+      <PopUp show={modalDelShow} msg={`Coffee ${coffeeId}: ${coffeeName} was deleted successfully `} onHide={() => window.location.reload()}/>
     </Container>
   );
 };

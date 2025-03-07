@@ -13,6 +13,9 @@ export default function PopUp(props){
           <Button variant="primary" onClick={props.onHide}>
             Ok
           </Button>
+          <Button variant="primary" onClick={props.onClose}>
+            Cancel
+          </Button>
         </Modal.Footer>
       </Modal>
   );
