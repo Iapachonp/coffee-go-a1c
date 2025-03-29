@@ -1,8 +1,10 @@
-import { coffees } from  "../data/data-coffees";
+import { coffees, prices } from  "../data/data-coffees";
 import { get_badge } from '../data/data-choices';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { scrollToTop } from "../other/ScrollToTop";
+import { arrayJoin } from "../utils/arrays";
+import {money}  from "../utils/currency";
 
 
 function CoffeeCard(props){  
@@ -20,9 +22,10 @@ function CoffeeCard(props){
       <ul className="list-group list-group-flush">
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Origen: {coffeecard.origin}</li>
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Proceso: {coffeecard.process}</li>
-        <li className="list-group-item text-light bg-transparent list-group-item-dark"> {coffeecard.weight}</li>
       </ul>
-      <Link onClick={scrollToTop} to={`/coffees/${coffeecard.id}`} className="btn btn-success"  >Comprar ${coffeecard.price}</Link>
+    <Link onClick={scrollToTop} to={`/coffees/${coffeecard.id}`} className="btn btn-success"  >
+      Comprar {money(prices[coffeecard.priceid].prices[0].price) }
+    </Link>
     </div>
   </div>
   </div>

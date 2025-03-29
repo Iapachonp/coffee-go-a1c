@@ -10,10 +10,12 @@ import Login from './components/login';
 import Home from './pages/home';
 import Coffees from './pages/coffees';
 import Coffee from './pages/coffee';
+import Cart from './components/Cart';
 import AdminPage from './pages/admin';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppContextProvider, AppContext } from './context/app-context';
 import WhatsAppContact from './components/WpContact';
+import { CartProvider, useCart } from './context/cart-context';
 
 
 const router = createBrowserRouter([
@@ -41,6 +43,7 @@ const router = createBrowserRouter([
       },
     ], 
   },
+  {path: "/cart", element: <Cart />},
   { path: "/login",
     element: <Login />,
     errorElement: <ErrorPage />,
@@ -54,13 +57,15 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <CartProvider>
     <AppContextProvider> 
-    <Navbar />
     <div className='container-fluid'>
+    <Navbar />
     <RouterProvider router={router} />
-    </div>
     <Footer />
+    </div>
     </AppContextProvider>
+    </CartProvider>
   </React.StrictMode>
 );
 

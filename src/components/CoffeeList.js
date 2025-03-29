@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { coffees } from '../data/data-coffees'; // Ensure you have the correct path to your data
+import { coffees, prices } from '../data/data-coffees'; // Ensure you have the correct path to your data
 import delIcon from '../assets/img/img/del-icon.png';
 import editIcon from '../assets/img/img/edit-icon.png';
 import PopUp from './PopUp';
 import {deleteCoffee} from "../utils/psqlHandlers";
+import {money}  from "../utils/currency";
+
 
 const CoffeeList = () => {
   const [coffeeId, setCoffeeId] = useState(null);
@@ -72,8 +74,16 @@ const CoffeeList = () => {
                   <strong>Process:</strong> {coffee.process.trim()}<br />
                   <strong>Description:</strong> {coffee.description.trim()}<br />
                   <strong>SCA:</strong> {coffee.sca}<br />
-                  <strong>Weight:</strong> {coffee.weight}g<br />
-                  <strong>Price:</strong> ${coffee.price}
+                <div>        
+                  { prices[parseInt(coffee.priceid)].prices.map( (price) => (
+                    <div>  
+                    ------ <br />
+                    <strong>Weight:</strong> {price.grams} gr<br />
+                    <strong>Price:</strong> { money(price.price)}<br />
+                    </div>
+                    
+                  ))}
+                </div>
                 </Card.Text>
               <div>
                 <button onClick={() => handleDelete(coffee)}> <img src={delIcon} alt="" style={{ width:"32px", height:"32px" }} /> </button>      

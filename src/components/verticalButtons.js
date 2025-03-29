@@ -10,10 +10,7 @@ import VarietalList from './VarietalsList';
 import FarmerList from './FarmersList';
 import OriginList from './OriginsList';
 import ProcessList from './ProcessList';
-import ErrorPage from '../pages/ErrorPage';
-
-import { useContext, Fragment } from 'react';
-import { AppContext } from '../context/app-context';
+import PriceList from './PriceList';
 
 function VerticalButtonFormSelector (props) {
   
@@ -45,6 +42,7 @@ function VerticalButtonFormSelector (props) {
       "New Origin": <AddOriginForm/>,
       "List Processes" : <ProcessList/>,
       "New Process": <AddProcessForm/>,
+      "List Prices" : <PriceList/>,
     }
     console.log(myComponents[form])
     if (!myComponents[form]) { return (<UndefiniedComponent />) } 

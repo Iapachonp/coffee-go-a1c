@@ -111,7 +111,7 @@ span.navbar-text {
     background-color: #ffffff;
     border-radius: 50%;
     transform: scale(0);
-	transition: 0.3s ease-in-out;
+	  transition: 0.3s ease-in-out;
 }
 .social-icon a:hover::before {
     transform: scale(1);
@@ -124,17 +124,19 @@ span.navbar-text {
 .social-icon a:hover img {
 	filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
 }
+
 .navbar-text button {
   font-weight: 700;
-  color: #fff;
+  color: #fff; /* Bootstrap's light text color */
   border: 1px solid #fff;
   padding: 18px 34px;
   font-size: 18px;
   margin-left: 18px;
-	position: relative;
-	background-color: transparent;
-	transition: 0.3s ease-in-out;
+  position: relative;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
 }
+
 .navbar-text button span {
   z-index: 1;
 }
@@ -142,6 +144,7 @@ span.navbar-text {
   content: "";
   width: 0%;
   height: 100%;
+  color: #fff; /* Bootstrap's light text color */
   position: absolute;
   background-color: #fff;
   left: 0;
@@ -508,3 +511,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .coffee-stats {
   margin-top: 30px;
 }
+
+.modal {
+        z-index: 9999 !important;
+      }
