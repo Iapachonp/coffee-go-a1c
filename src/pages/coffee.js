@@ -51,44 +51,60 @@ class Barchart extends Component {
 
 export default function Coffee (){
   const [grams, setGrams] = useState('')
-  const [price, setPrice] = useState(0)
-  const [priceValue, setPriceValue] = useState(0)
+  const [priceid, setPriceid] = useState(0)
+  const [indexid, setIndexid] = useState(0)
   const [coffee, setCoffee] = useState(null);
+  const [price, setPrice] = useState(0)
+
   
   const { addToCart } = useCart();
   let { id } = useParams();
   
-  var handleAddToCart= (coffee) => {
+ var handleAddToCart= (coffee) => { 
     console.log(document.getElementById("selectGrams").value)
     const gr = document.getElementById("selectGrams").value 
-    const pr = document.getElementById("selectedPrice").title
     console.log(document.getElementById("selectedPrice").title)
-    coffee.price = pr 
-    coffee.grams = gr 
+    const price = Number(document.getElementById("selectedPrice").title) 
+    coffee.price = price
+    coffee.grams = gr
+    console.log("heyyyy jude")
+    coffee.cartid = coffee.id + "-" + priceid + "-" + indexid 
+    console.log(coffee)
     addToCart(coffee)
+    window.location.reload();
   };
 
   const getCoffee = async () => {
     try {
       const response = await fetchCoffee(id) ;
       setCoffee(response[0]);
+      setPriceid(response[0].priceid);
+      console.log("price id:", priceid);
+      console.log("cofeeee first", coffee);
     } catch (error) {
       console.error('Error fetching coffee:', error);
     }
   };
   
-  var onChangeWeight = (e) => {
-    const index = e.target.selectedIndex
-    const el = e.target.childNodes[index]
-    setGrams(el.value)
-    setPrice(index)
-    setPriceValue(prices[index].prices[price].price)
-    coffee.grams = el.value
-  };
+  const onChangeWeight = (e) => {
+    const index = e.target.selectedIndex;
+    console.log("index id:", index);
+    console.log("price id:", priceid);
+    const newIndex = index;
+    setIndexid(newIndex);
+    const newGrams = prices[priceid].prices[index].grams;
+    setGrams(newGrams);
+    const newPrice = prices[priceid].prices[index].price;
+    setPrice(newPrice);
+    console.log("grams:", newGrams);
+    console.log("price:", newPrice);
+    console.log(prices[priceid]);
+    coffee.grams = grams
+};
   
   useEffect(() => {
     getCoffee();
-  }, [id]);
+  }, [id, priceid]);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   return(
@@ -120,7 +136,7 @@ export default function Coffee (){
               </li>
               <li className="list-group-item list-group-item-secondary">
                 <label htmlFor="inputState"> <b> Precio: </b> </label>
-                <p id="selectedPrice" title={prices[coffee.priceid].prices[price].price} > {money(prices[coffee.priceid].prices[price].price) } </p>
+                <p id="selectedPrice" onChange={(e) => {setPrice(e.target.value())}} title={prices[coffee.priceid].prices[indexid].price} > {money(prices[coffee.priceid].prices[indexid].price) } </p>
               </li>
             </ul>
           </div> 
