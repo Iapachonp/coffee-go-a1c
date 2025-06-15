@@ -15,6 +15,9 @@ export default function Home (){
 
 return(
   <div className="container-fluid">
+   <div className="fullscreen-bg">
+    <div className="fullscreen-overlay"></div>
+   </div>
    <Banner />
    <Contact />
    <MailchimpForm /> 

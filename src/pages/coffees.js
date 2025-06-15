@@ -39,7 +39,7 @@ export default function Coffees () {
     <CoffeeCard props={coffees[i]} key={i} />  
   );
   return(
-    <div className="container content">
+    <div className="container coffee-content">
       <h2 className="text-white bs-light bs-light-text-emphasis"> {"Cafes" + " "} 
       <NeoBadge text={get_badge("Coffees")}/></h2>
       <div className="row row-cols-auto coffee-row">

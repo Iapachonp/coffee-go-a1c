@@ -54,7 +54,7 @@ export default function Coffee() {
   return (
     <div>
       {coffee ? (
-        <div className="coffee container content neo-coffee-section">
+        <div className="container coffee-content neo-coffee-section">
           <h2 className="neo-coffee-title">
             {coffee.name + " "}
             <NeoBadge text={coffee.sca + " sca"} />
@@ -62,7 +62,7 @@ export default function Coffee() {
 
           {/* Bootstrap Grid Layout */}
           <div className="container">
-            <div className="row">
+            <div className="row flex-column-reverse flex-lg-row">
               {/* First Column: Description */}
               <div className="col-md-5">
                 <h4 className="neo-coffee-subtitle">Description</h4>
@@ -139,16 +139,14 @@ export default function Coffee() {
               <div className="col-md-5 neo-coffee-img-wrapper">
                 <img src={coffee.image} className="neo-coffee-img img-fluid rounded" alt="Coffee" />
               </div>
-
-              {/* Third Column: Optional Chart or Details */}
-              <div className="row">
+            </div>
+            <div className="row">
                 <div className="col">
                   <div className="coffee-stats">
                     <Barchart />
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       ) : (
