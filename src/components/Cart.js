@@ -6,6 +6,7 @@ import delIcon from '../assets/img/img/del-icon.png';
 import cartIcon from '../assets/img/img/cart-icon.svg';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import {money}  from "../utils/currency";
+import NeoButtonBase from './NeoButtonBase';
 import { coffees, prices } from '../data/data-coffees'; // Ensure you have the correct path to your data
 
 const Cart = (props) => {
@@ -51,7 +52,7 @@ const Cart = (props) => {
                   <strong>Price:</strong> {money(coffee.price)}<br />
                 </Card.Text>
               <div>
-                <button onClick={() => removeFromCart(coffee)}> <img src={delIcon} alt="" style={{ width:"32px", height:"32px" }} /> </button>      
+                <NeoButtonBase onClick={() => removeFromCart(coffee)}> <img src={delIcon} alt="" style={{ width:"32px", height:"32px" }} /> </NeoButtonBase> 
                 <div style={{ width:"70px", height:"auto", display:"inline-block"}} > 
                 </div>
               </div>  
@@ -65,12 +66,12 @@ const Cart = (props) => {
           <p>Total: ${money(total.toFixed(2))}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <NeoButtonBase variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={clearCart}>
+          </NeoButtonBase>
+          <NeoButtonBase variant="primary" onClick={clearCart}>
             Clear Cart
-          </Button>
+          </NeoButtonBase>
         </Modal.Footer>
       </Modal>
     </>
