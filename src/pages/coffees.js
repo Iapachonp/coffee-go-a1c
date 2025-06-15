@@ -6,6 +6,7 @@ import { scrollToTop } from "../other/ScrollToTop";
 import { arrayJoin } from "../utils/arrays";
 import {money}  from "../utils/currency";
 import NeoButton from "../components/NeoButton";
+import NeoBadge from "../components/NeoBadge";
 
 
 function CoffeeCard(props){  
@@ -13,10 +14,10 @@ function CoffeeCard(props){
   return (
   <div className="col">
   <div className="coffees container text-center h-100">
-    <div className="card h-100 text-bg-dark" style={{width: "18rem"}}>
+    <div className="card neo-card h-100 text-bg-dark" style={{width: "18rem"}}>
       <img src={coffeecard.image} className="card-img-top thumbnail" alt="..."/>
       <div className="card-body">
-        <span className="badge bg-primary rounded-pill">nuevo</span>
+        <NeoBadge text={"nuevo"}/>
         <h3 className="card-title">{coffeecard.name}</h3>
         <p className="card-text text-secondary justify-content-between">{coffeecard.description}</p>
       </div>
@@ -39,8 +40,8 @@ export default function Coffees () {
   );
   return(
     <div className="container content">
-      <h2 className="text-white bs-light bs-light-text-emphasis"> Cafes 
-      <span className="badge bg-secondary">{get_badge("Coffees")}</span></h2>
+      <h2 className="text-white bs-light bs-light-text-emphasis"> {"Cafes" + " "} 
+      <NeoBadge text={get_badge("Coffees")}/></h2>
       <div className="row row-cols-auto coffee-row">
         {coffeeCards}
       </div>

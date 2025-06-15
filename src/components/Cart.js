@@ -1,77 +1,115 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/cart-context';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import delIcon from '../assets/img/img/del-icon.png';
 import cartIcon from '../assets/img/img/cart-icon.svg';
-import { Card, Col, Container, Row } from 'react-bootstrap';
-import {money}  from "../utils/currency";
+import { Card } from 'react-bootstrap';
+import { money } from "../utils/currency";
 import NeoButtonBase from './NeoButtonBase';
-import { coffees, prices } from '../data/data-coffees'; // Ensure you have the correct path to your data
 
 const Cart = (props) => {
-  const [show, setShow] = useState(props.show)
+  const [show, setShow] = useState(props.show);
   const { cartItems, removeFromCart, clearCart } = useCart();
 
   const total = cartItems.reduce((acc, item) => acc + item.price * 1.0, 0);
 
-  const handleClose = () => {
-    setShow(false)};
-  
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  useEffect(() => {
+    setShow(props.show);
+  }, [props.show]);
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} animation={false} >
-        
-        <Modal.Header closeButton>
-          <Modal.Title className="text-dark">Shopping Cart</Modal.Title>
-          <a className="social-icon" href="#"><img src={cartIcon} alt="" /></a>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        animation={false}
+        contentClassName="neo-cart-modal fade-in"
+        dialogClassName="neo-cart-dialog"
+        centered
+      >
+      <div data-bs-theme="dark">
+        <Modal.Header closeButton 
+          style={{
+            backgroundColor: '#12121b',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+            color: '#ffffff'
+        }}>
+          <Modal.Title style={{ color: '#e0e0e0', fontWeight: '600' }}>
+            🛒 Shopping Cart
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="text-dark">
-          <ul>
-            {cartItems.map((coffee) => (
-              <>
-              <Card className="h-100 d-flex flex-column p-2" style={{ fontSize: '0.9rem' }}>
-              <Card.Img
-                variant="top"
-                src={coffee.image.trim()}
-                alt={coffee.name.trim()}
-                style={{ height: '80px', objectFit: 'cover' }} // Adjust image size
-              />
-              <Card.Body className="d-flex flex-column">
-                <Card.Title style={{ fontSize: '1rem' }}>{coffee.name.trim()}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: '0.85rem' }}>
-                  {coffee.origin.trim()}
-                </Card.Subtitle>
-                <Card.Text className="flex-grow-1">
-                  <strong>Process:</strong> {coffee.process.trim()}<br />
-                  <strong>Description:</strong> {coffee.description.trim()}<br />
-                  <strong>SCA:</strong> {coffee.sca}<br />
-                  <strong>Grams:</strong> {coffee.grams}<br />    
-                  <strong>Price:</strong> {money(coffee.price)}<br />
-                </Card.Text>
-              <div>
-                <NeoButtonBase onClick={() => removeFromCart(coffee)}> <img src={delIcon} alt="" style={{ width:"32px", height:"32px" }} /> </NeoButtonBase> 
-                <div style={{ width:"70px", height:"auto", display:"inline-block"}} > 
-                </div>
-              </div>  
-              </Card.Body>
-            </Card> 
+      </div>
 
-            </>
+        <Modal.Body style={{
+          backgroundColor: '#1a1a24',
+          color: '#ffffff',
+          maxHeight: '60vh',
+          overflowY: 'auto'
+        }}>
+          {cartItems.length === 0 ? (
+            <p style={{ color: '#aaa' }}>Your cart is empty.</p>
+          ) : (
+            cartItems.map((coffee, index) => (
+              <Card
+                key={index}
+                className="mb-3 cart-item-entry"
+                style={{
+                  backgroundColor: '#191926',
+                  color: '#ffffff',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  borderRadius: '10px',
+                  boxShadow: '0 0 8px rgba(0, 255, 195, 0.05)',
+                  overflow: 'hidden',
+                }}
+              >
+                <Card.Img
+                  variant="top"
+                  src={coffee.image.trim()}
+                  alt={coffee.name.trim()}
+                  style={{ height: '120px', objectFit: 'cover' }}
+                />
+                <Card.Body style={{ padding: '12px' }}>
+                  <Card.Title style={{ fontSize: '1rem', color: '#e0e0e0' }}>
+                    {coffee.name.trim()}
+                  </Card.Title>
+                  <Card.Subtitle style={{ fontSize: '0.85rem', color: '#aaa' }}>
+                    {coffee.origin.trim()}
+                  </Card.Subtitle>
+                  <Card.Text style={{ fontSize: '0.85rem', marginTop: '6px' }}>
+                    <strong>Process:</strong> {coffee.process}<br />
+                    <strong>SCA:</strong> {coffee.sca}<br />
+                    <strong>Grams:</strong> {coffee.grams}<br />
+                    <strong>Price:</strong> {money(coffee.price)}<br />
+                  </Card.Text>
+                  <NeoButtonBase onClick={() => removeFromCart(coffee)}>
+                    <img src={delIcon} alt="Delete" style={{ width: "24px", height: "24px" }} />
+                  </NeoButtonBase>
+                </Card.Body>
+              </Card>
+            ))
+          )}
 
-            ))}
-          </ul>
-          <p>Total: ${money(total.toFixed(2))}</p>
+          {cartItems.length > 0 && (
+            <p style={{ fontWeight: 'bold', color: '#ffffff' }}>
+              Total: {money(total.toFixed(2))}
+            </p>
+          )}
         </Modal.Body>
-        <Modal.Footer>
-          <NeoButtonBase variant="secondary" onClick={handleClose}>
+
+        <Modal.Footer style={{
+          backgroundColor: '#12121b',
+          borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+        }}>
+          <NeoButtonBase onClick={handleClose}>
             Close
           </NeoButtonBase>
-          <NeoButtonBase variant="primary" onClick={clearCart}>
-            Clear Cart
-          </NeoButtonBase>
+          {cartItems.length > 0 && (
+            <NeoButtonBase onClick={clearCart}>
+              Clear Cart
+            </NeoButtonBase>
+          )}
         </Modal.Footer>
       </Modal>
     </>

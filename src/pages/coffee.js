@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import {money}  from "../utils/currency";
 import { useCart } from '../context/cart-context';
 import NeoButton from "../components/NeoButton";
+import NeoBadge from "../components/NeoBadge";
 
 export default function Coffee (){
   const [grams, setGrams] = useState('')
@@ -68,17 +69,19 @@ export default function Coffee (){
   return(
     <div>
     { coffee ? (
-    <div className="coffee container content"> 
-    <h2 className="text-white bs-light bs-light-text-emphasis" >  {coffee.name  + " "} 
-    <span className="badge bg-primary rounded-pill">{coffee.sca + " sca"}</span> </h2> 
+    <div className="coffee container content neo-coffee-section">
+    <h2 className="neo-coffee-title">
+      {coffee.name + " "}
+      <NeoBadge text={coffee.sca + " sca"} />
+    </h2> 
       <div className="container">
         <div className="row justify-content-start">
           <div className="col-3">
-            <img src={coffee.image} className="img-fluid rounded" alt="..."/> 
+             <img src={coffee.image} className="img-fluid rounded neo-coffee-img" alt="Coffee" /> 
           </div>
-          <div className="col-5"> 
-            <h4 className="text-white"> Description </h4>
-            <p className="text-white"> {coffee.description}  </p>
+           <div className="col-5">
+              <h4 className="neo-coffee-subtitle">Description</h4>
+              <p className="neo-coffee-description">{coffee.description}</p>
           <div className="col-6"> 
       <div
           className="coffee-card"
