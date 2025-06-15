@@ -645,6 +645,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .neo-coffee-img {
   box-shadow: 0 0 8px rgba(0, 255, 195, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem; /* optional: match image rounding */
+}
+
+/* Add padding only on small screens */
+@media (max-width: 767.98px) {
+  .neo-coffee-img-wrapper {
+    padding: 10px;
+  }
 }
 
 .neo-coffee-subtitle {
