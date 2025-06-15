@@ -56,6 +56,21 @@ img {
 }
 
 /************ Navbar Css ************/
+
+/* Mobile-only navbar text (A1C) */
+.navbar-text-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  /* padding: 10px 0; */
+  /* background-color: rgba(40, 44, 52, 0.95);  */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Soft separation line */
+}
+
 nav.navbar {
   padding: 18px 0;
   position: fixed;
