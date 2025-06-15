@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { scrollToTop } from "../other/ScrollToTop";
 import { arrayJoin } from "../utils/arrays";
 import {money}  from "../utils/currency";
+import NeoButton from "../components/NeoButton";
 
 
 function CoffeeCard(props){  
@@ -23,9 +24,9 @@ function CoffeeCard(props){
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Origen: {coffeecard.origin}</li>
         <li className="list-group-item text-light bg-transparent list-group-item-dark">Proceso: {coffeecard.process}</li>
       </ul>
-    <Link onClick={scrollToTop} to={`/coffees/${coffeecard.id}`} className="btn btn-success"  >
+    <NeoButton onClick={scrollToTop} to={`/coffees/${coffeecard.id}`} className="btn btn-success"  >
       Comprar {money(prices[coffeecard.priceid].prices[0].price) }
-    </Link>
+    </NeoButton>
     </div>
   </div>
   </div>

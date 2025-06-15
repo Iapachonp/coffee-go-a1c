@@ -1,53 +1,12 @@
 import React, { Component, useState, useEffect } from "react";
-import Chart from "react-apexcharts";
+import Barchart from "../components/Barchart";
 import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
 import { coffees, prices, fetchCoffee } from  "../data/data-coffees";
 import { Popover } from 'react-tiny-popover';
 import { useParams } from 'react-router-dom';
 import {money}  from "../utils/currency";
 import { useCart } from '../context/cart-context';
-
-
-class Barchart extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      options: {
-        chart: {
-          id: "basic-bar"
-        },
-        xaxis: {
-          categories: ["Body", "Sweetness", "Acidity", "Bitterness"]
-        }
-      },
-      series: [
-        {
-          name: "coffee",
-          data: [49, 60, 70, 91]
-        }
-      ]
-    };
-  }
-
-  render() {
-    return (
-      <div className="app">
-        <div className="row">
-          <div className="mixed-chart">
-            <Chart
-              options={this.state.options}
-              series={this.state.series}
-              type="bar"
-              width="800"
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
+import NeoButton from "../components/NeoButton";
 
 export default function Coffee (){
   const [grams, setGrams] = useState('')
@@ -99,7 +58,6 @@ export default function Coffee (){
     console.log("grams:", newGrams);
     console.log("price:", newPrice);
     console.log(prices[priceid]);
-    coffee.grams = grams
 };
   
   useEffect(() => {
@@ -122,24 +80,61 @@ export default function Coffee (){
             <h4 className="text-white"> Description </h4>
             <p className="text-white"> {coffee.description}  </p>
           <div className="col-6"> 
-          <div className="card" >
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item"> <b>Origen: </b> {coffee.origin}</li>
-              <li className="list-group-item list-group-item-secondary"> <b>Proceso: </b> {coffee.process}</li>
-              <li className="list-group-item">
-                <label htmlFor="inputState"> <b> Presentacion: </b> </label>
-                  <select id="selectGrams" onChange={onChangeWeight} className="form-control bg-secondary-subtle">
-                    { prices[coffee.priceid].prices.map(price => 
-                      <option>{price.grams} gr</option>
-                  )}
-                  </select>
-              </li>
-              <li className="list-group-item list-group-item-secondary">
-                <label htmlFor="inputState"> <b> Precio: </b> </label>
-                <p id="selectedPrice" onChange={(e) => {setPrice(e.target.value())}} title={prices[coffee.priceid].prices[indexid].price} > {money(prices[coffee.priceid].prices[indexid].price) } </p>
-              </li>
-            </ul>
-          </div> 
+      <div
+          className="coffee-card"
+          style={{
+            backgroundColor: '#12121b',
+            color: '#ffffff',
+            borderRadius: '12px',
+            padding: '16px',
+            boxShadow: '0 0 10px rgba(0,255,204,0.05)',
+            fontFamily: 'Inter, sans-serif'
+          }}
+        >
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            <li style={{ padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+              <b>Origen:</b> {coffee.origin}
+            </li>
+            <li style={{ padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+              <b>Proceso:</b> {coffee.process}
+            </li>
+            <li style={{ padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+              <label htmlFor="selectGrams"><b>Presentación:</b></label><br />
+              <select
+                id="selectGrams"
+                onChange={onChangeWeight}
+                style={{
+                  backgroundColor: '#1e1e2a',
+                  color: '#ffffff',
+                  border: '1px solid #333',
+                  borderRadius: '6px',
+                  padding: '8px',
+                  width: '100%',
+                  marginTop: '6px'
+                }}
+              >
+                {prices[coffee.priceid].prices.map((price, index) => (
+                  <option key={index}>{price.grams} gr</option>
+                ))}
+              </select>
+            </li>
+            <li style={{ padding: '10px 0' }}>
+              <label htmlFor="selectedPrice"><b>Precio:</b></label><br />
+              <p
+                id="selectedPrice"
+                title={prices[coffee.priceid].prices[indexid].price}
+                style={{
+                  marginTop: '6px',
+                  color: '#00ffc3',
+                  fontWeight: '500',
+                  fontSize: '16px'
+                }}
+              >
+                {money(prices[coffee.priceid].prices[indexid].price)}
+              </p>
+            </li>
+          </ul>
+        </div>
           </div>
           <Popover
             isOpen={isPopoverOpen}
@@ -151,12 +146,11 @@ export default function Coffee (){
                 </div>
             }
           >
-          <Link onClick={() => handleAddToCart(coffee) && setIsPopoverOpen(!isPopoverOpen)} className="btn btn-success cart-button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Agregar al Carrito </Link>
+          <NeoButton onClick={() => handleAddToCart(coffee) && setIsPopoverOpen(!isPopoverOpen)} className="btn btn-success cart-button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Agregar al Carrito </NeoButton>
           </Popover>
           </div>
         </div>
         <div className="coffee-stats"> 
-        <h3 className="text-white"> Stats </h3>
         <Barchart/> 
         </div>
       </div>
@@ -165,10 +159,8 @@ export default function Coffee (){
       <div className="coffee container content">
       <p>Loading coffee data...</p>
       </div>
-    )};
+    )}
    </div>
    )
-
-
 } 
 
