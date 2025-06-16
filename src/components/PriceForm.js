@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, InputGroup } from "react-bootstrap";
 import {postPrice} from "../utils/psqlHandlers"
 import PopUp from './PopUp';
+import NeoButtonBase from './NeoButtonBase';
 
 function AddPriceForm (props) {
   const [country, setCountry] = useState("");
@@ -79,9 +80,9 @@ function AddPriceForm (props) {
           onChange={(event) => setCityTown(event.target.value)}
         />
       </InputGroup>
-      <Button variant="primary" type="submit">
+      <NeoButtonBase variant="primary" type="submit">
         Add Price
-      </Button>
+      </NeoButtonBase>
     </Form>
     <PopUp show={modalShow} msg={`Price ${originCreated} was successfully created`} onHide={() => window.location.reload()}/>
     </div>

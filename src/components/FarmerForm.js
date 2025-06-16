@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, InputGroup } from "react-bootstrap";
+import NeoButtonBase from './NeoButtonBase';
 import { postFarmer} from "../utils/psqlHandlers"
 import PopUp from './PopUp';
 
@@ -78,9 +79,9 @@ function AddfarmerForm (props) {
           onChange={(event) => setAltitude(event.target.value)}
         />
       </InputGroup>
-      <Button variant="primary" type="submit">
+      <NeoButtonBase variant="primary" type="submit">
         Add farmer
-      </Button>
+      </NeoButtonBase>
     </Form>
     <PopUp show={modalShow} msg={`farmer ${farmerCreated} was successfully created`} onHide={() => window.location.reload()}/>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, InputGroup } from "react-bootstrap";
+import NeoButtonBase from './NeoButtonBase';
 import {postOrigin} from "../utils/psqlHandlers"
 import PopUp from './PopUp';
 
@@ -79,9 +80,9 @@ function AddOriginForm (props) {
           onChange={(event) => setCityTown(event.target.value)}
         />
       </InputGroup>
-      <Button variant="primary" type="submit">
+      <NeoButtonBase variant="primary" type="submit">
         Add Origin
-      </Button>
+      </NeoButtonBase>
     </Form>
     <PopUp show={modalShow} msg={`Origin ${originCreated} was successfully created`} onHide={() => window.location.reload()}/>
     </div>

@@ -7,6 +7,7 @@ import { useCart } from '../context/cart-context';
 import NeoButton from "../components/NeoButton";
 import NeoBadge from "../components/NeoBadge";
 import { Popover } from 'react-tiny-popover';
+import Loading from "../components/loading";
 
 export default function Coffee() {
   const [grams, setGrams] = useState('');
@@ -151,7 +152,7 @@ export default function Coffee() {
         </div>
       ) : (
         <div className="coffee container content">
-          <p>Loading coffee data...</p>
+          <Loading/>  
         </div>
       )}
     </div>

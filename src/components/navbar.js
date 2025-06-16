@@ -78,9 +78,9 @@ function Navbar() {
               con&oacute;cenos
             </Nav.Link>
             <Nav.Link
-              href="/shop"
-              className={activeLink === 'shop' ? 'active navbar-link' : 'navbar-link'}
-              onClick={() => onUpdateActiveLink('shop')}
+              href="/contactus"
+              className={activeLink === 'contactus' ? 'active navbar-link' : 'navbar-link'}
+              onClick={() => onUpdateActiveLink('contactus')}
             >
               contacto
             </Nav.Link>

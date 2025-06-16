@@ -5,12 +5,14 @@ import AddFarmerForm  from './FarmerForm';
 import AddCoffeeForm from './CoffeeForm';
 import AddOriginForm from './OriginForm';
 import AddProcessForm from './ProcessForm';
+import AddPriceForm from './PriceForm';
 import CoffeeList from './CoffeeList';
 import VarietalList from './VarietalsList';
 import FarmerList from './FarmersList';
 import OriginList from './OriginsList';
 import ProcessList from './ProcessList';
 import PriceList from './PriceList';
+import NeoButtonBase from './NeoButtonBase';
 
 function VerticalButtonFormSelector (props) {
   
@@ -18,7 +20,7 @@ function VerticalButtonFormSelector (props) {
   const [form , setForm] = useState("List Coffees")
   
   const Choice = ({name, onclick}) => (
-    <button  style={{ width: '100%' }} onClick={() => setForm(name)} className='btn btn-warning btn-lg my-1'> {name} </button> 
+    <NeoButtonBase  width='100%' onClick={() => setForm(name)} className='btn btn-warning btn-lg my-1'> {name} </NeoButtonBase> 
   );
   
   function handleFormSelector(form){ 
@@ -43,6 +45,7 @@ function VerticalButtonFormSelector (props) {
       "List Processes" : <ProcessList/>,
       "New Process": <AddProcessForm/>,
       "List Prices" : <PriceList/>,
+      "New Prices" : <AddPriceForm/>,
     }
     console.log(myComponents[form])
     if (!myComponents[form]) { return (<UndefiniedComponent />) } 

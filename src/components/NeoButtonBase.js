@@ -1,5 +1,5 @@
 
-export default function NeoButtonBase({ onClick, children, title, type = "button" }) {
+export default function NeoButtonBase({ onClick, children, title, type = "button", width = "auto" }) {
   return (
     <button
       type={type}
@@ -17,6 +17,7 @@ export default function NeoButtonBase({ onClick, children, title, type = "button
         fontSize: "14px",
         cursor: "pointer",
         transition: "all 0.2s ease-in-out",
+        width: width 
       }}
       onMouseEnter={(e) => {
         e.target.style.backgroundColor = "rgba(0, 255, 195, 0.35)";

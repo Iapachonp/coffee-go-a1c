@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, InputGroup } from "react-bootstrap";
+import NeoButtonBase from './NeoButtonBase';
 import {postProcess} from "../utils/psqlHandlers"
 import PopUp from './PopUp';
 
@@ -79,9 +80,9 @@ function AddProcessForm (props) {
           onChange={(event) => setTimeDuration(event.target.value)}
         />
       </InputGroup>
-      <Button variant="primary" type="submit">
+      <NeoButtonBase variant="primary" type="submit">
         Add Process
-      </Button>
+      </NeoButtonBase>
     </Form>
     <PopUp show={modalShow} msg={`Process ${processCreated} was successfully created`} onHide={() => window.location.reload()}/>
     </div>

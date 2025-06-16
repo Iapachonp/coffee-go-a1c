@@ -11,11 +11,13 @@ import Home from './pages/home';
 import Coffees from './pages/coffees';
 import Coffee from './pages/coffee';
 import Cart from './components/Cart';
+import Us from './pages/us';
 import AdminPage from './pages/admin';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppContextProvider, AppContext } from './context/app-context';
 import WhatsAppContact from './components/WpContact';
 import { CartProvider, useCart } from './context/cart-context';
+import ContactUs from './pages/contactUs';
 
 
 const router = createBrowserRouter([
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/contacto",
         element: <WhatsAppContact/>,
+      },
+      {
+        path: "/us",
+        element: <Us/>,
+      },
+      {
+        path: "/contactus",
+        element: <ContactUs/>,
       },
       {
         path: "/coffees/:id",

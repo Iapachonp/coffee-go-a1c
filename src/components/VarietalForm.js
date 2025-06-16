@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, InputGroup } from "react-bootstrap";
+import NeoButtonBase from './NeoButtonBase';
 import {postVarietal} from "../utils/psqlHandlers"
 import PopUp from './PopUp';
 
@@ -126,9 +127,9 @@ function AddVarietalForm (props) {
           onChange={(event) => setOptimalAltitude(event.target.value)}
         />
       </InputGroup>
-      <Button variant="primary" type="submit">
+      <NeoButtonBase variant="primary" type="submit">
         Add Varietal
-      </Button>
+      </NeoButtonBase>
     </Form>
     <PopUp show={modalShow} msg={`Varietal ${varietalCreated} was successfully created`} onHide={() => window.location.reload()}/>
     </div>

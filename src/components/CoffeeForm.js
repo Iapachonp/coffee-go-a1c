@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, InputGroup } from "react-bootstrap";
+import NeoButtonBase from './NeoButtonBase';
 import {farmers, varietals, origins, processes } from  "../data/data-coffees";
 import {postCoffee} from "../utils/psqlHandlers";
 import PopUp from './PopUp';
@@ -249,9 +250,9 @@ const AddCoffeeForm = (props) => {
           onChange={(event) => setImage(event.target.value)}
         />
       </InputGroup>
-      <Button variant="primary" type="submit">
+      <NeoButtonBase variant="primary" type="submit">
         Add Varietal
-      </Button>
+      </NeoButtonBase>
     </Form>
     <PopUp show={modalShow} msg={`coffee ${coffeeCreated} was successfully created`} onHide={() => window.location.reload()}/>
     </div>
